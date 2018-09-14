@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using app.API.Data;
+using app.API.Dtos;
 using app.API.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,76 +14,89 @@ namespace app.API.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        public PostsController(AppDbContext context)
+        private readonly IPostRepository _repo;
+        private readonly IMapper _mapper;
+        public PostsController(IPostRepository repo, IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
+            _repo = repo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPosts()
         {
-            var posts = await _context.Posts.ToListAsync();
-            return Ok(posts);
+            var posts = await _repo.GetPosts();
+            var postsToReturn = _mapper.Map<IEnumerable<PostForReturnDto>>(posts);
+            return Ok(postsToReturn);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
-            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            var post = await _repo.GetPost(id);
+
             if (post == null)
                 return NotFound();
 
-            return Ok(post);
+            var postToReturn = _mapper.Map<PostForReturnDto>(post);
+
+            return Ok(postToReturn);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost(Post post)
+        public async Task<IActionResult> CreatePost(PostForCreateDto postForCreateDto)
         {
+            var post = _mapper.Map<Post>(postForCreateDto);
+
             post.Created = DateTime.Now;
             post.LastUpdated = post.Created;
 
-            await _context.Posts.AddAsync(post);
-            var result = await _context.SaveChangesAsync();
-            if (result > 0)
-                return Ok(post);
+            _repo.Add(post);
+            var result = await _repo.SaveAll();
+            if (result)
+            {
+                var postToReturn = _mapper.Map<PostForReturnDto>(post);
+                return Ok(postToReturn);
+            }
+
             return BadRequest("Failed to create post!");
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePost(int id, Post post)
+        public async Task<IActionResult> UpdatePost(int id, PostForUpdateDto postForUpdateDto)
         {
-            var postFromDb = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+            var postFromDb = await _repo.GetPost(id);
 
             if (postFromDb == null)
                 return NotFound();
+
+            postForUpdateDto.LastUpdated = DateTime.Now;
+
+            _mapper.Map(postForUpdateDto, postFromDb);
             
-            postFromDb.Title = post.Title;
-            postFromDb.Content = post.Content;
-            postFromDb.LastUpdated = DateTime.Now;
 
-            var result = await _context.SaveChangesAsync();
+            var result = await _repo.SaveAll();
 
-            if (result > 0)
+            if (result)
                 return Ok(postFromDb);
-            
+
             return BadRequest($"Failed to update post {id}!");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {
-            var postToDelete = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
-            
+            var postToDelete = await _repo.GetPost(id);
+
             if (postToDelete == null)
                 return NotFound();
 
-            _context.Posts.Remove(postToDelete);
-            var result = await _context.SaveChangesAsync();
+            _repo.Delete(postToDelete);
+            var result = await _repo.SaveAll();
 
-            if (result <= 0)
+            if (!result)
                 return BadRequest($"Failed to delete post {id}!");
-            
+
             return NoContent();
         }
 
