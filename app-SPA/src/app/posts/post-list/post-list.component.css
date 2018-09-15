@@ -2,3 +2,13 @@
   display: block;
   margin-top: 1rem;
 }
+
+.button-row {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

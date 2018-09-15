@@ -4,5 +4,11 @@
       {{ post.title }}
     </mat-expansion-panel-header>
     <p>{{ post.content }}</p>
+    <div class="button-row">
+      <span class="spacer"></span>
+      <button mat-mini-fab color="warn" (click)="delete(post.id)">
+        <mat-icon aria-label="Example icon-button with a heart icon">delete_outline</mat-icon>
+      </button>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>
