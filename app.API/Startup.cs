@@ -31,6 +31,7 @@ namespace app.API
             services.AddDbContext<AppDbContext>(x => x.UseSqlite(Configuration.GetConnectionString("Default")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddAutoMapper();
+            services.AddCors();
 
             services.AddScoped<IPostRepository, PostRepository>();
         }
@@ -48,6 +49,7 @@ namespace app.API
             }
 
             // app.UseHttpsRedirection();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
         }
     }
