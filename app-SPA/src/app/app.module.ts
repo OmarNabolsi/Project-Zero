@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule, MatInputModule, MatCardModule, MatDividerModule,
   MatToolbarModule, MatExpansionModule, MatIconModule
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDividerModule,
     MatToolbarModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    FlexLayoutModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
