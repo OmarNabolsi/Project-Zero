@@ -4,7 +4,7 @@
 
 mat-card {
   margin-top: 1rem;
-  width: 600px;
+  min-width: 450px;
 }
 mat-card-title {
   color: #0288d1;

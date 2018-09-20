@@ -14,32 +14,43 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostService } from './_services/post.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { PostComponent } from './posts/post/post.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    PostCreateComponent,
-    PostListComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatDividerModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatIconModule,
-    FlexLayoutModule,
-    MatSidenavModule,
-    MatListModule,
-    MatMenuModule
-  ],
-  providers: [PostService],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HeaderComponent,
+      PostComponent,
+      PostCreateComponent,
+      PostListComponent,
+      HomeComponent
+   ],
+   imports: [
+      BrowserModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      FormsModule,
+      MatButtonModule,
+      MatInputModule,
+      MatCardModule,
+      MatDividerModule,
+      MatToolbarModule,
+      MatExpansionModule,
+      MatIconModule,
+      FlexLayoutModule,
+      MatSidenavModule,
+      MatListModule,
+      MatMenuModule,
+      RouterModule.forRoot(appRoutes),
+   ],
+   providers: [
+      PostService
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
