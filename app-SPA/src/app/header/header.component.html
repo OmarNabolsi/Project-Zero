@@ -1,1 +1,17 @@
-<mat-toolbar color="primary">Project Zero</mat-toolbar>
+<mat-toolbar color="primary">
+    <div>
+        <button mat-icon-button (click)="onToggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <a href="#">Project Zero</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="10px" class="navItems">
+            <li><a href="#">Posts</a></li>
+            <li><a href="#">Accounts</a></li>
+            <li><a href="#">Transactions</a></li>
+        </ul>
+    </div>
+</mat-toolbar>

@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule, MatInputModule, MatCardModule, MatDividerModule,
-  MatToolbarModule, MatExpansionModule, MatIconModule
+  MatToolbarModule, MatExpansionModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule
 } from '@angular/material';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatExpansionModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent]

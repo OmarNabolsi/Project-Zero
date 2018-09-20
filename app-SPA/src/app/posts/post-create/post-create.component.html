@@ -1,9 +1,10 @@
 
 <section class="post-container" fxLayout="column" fxLayoutAlign="center center">
   <mat-card>
-    <mat-card-title-group fxLayout="column" fxLayoutAlign="center center">
+    <mat-toolbar color="primary">New Post</mat-toolbar>
+    <!-- <mat-card-title-group fxLayout="column" fxLayoutAlign="center center">
       <mat-card-title>New Post</mat-card-title>
-    </mat-card-title-group>
+    </mat-card-title-group> -->
 
     <form #postForm="ngForm" id="PostForm" (submit)="onSave(postForm)" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-content>
@@ -26,25 +27,3 @@
     </mat-card-actions>
   </mat-card>
 </section>
-
-<!-- <mat-card>
-  <form (submit)="onSave(postForm)" #postForm="ngForm" fxLayout="column">
-    <mat-card-content>
-      <mat-form-field>
-        <input matInput type="text" name="title" ngModel placeholder="Post Title">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput rows="6" name="content" ngModel placeholder="Description"></textarea>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions>
-      <span class="spacer"></span>
-      <div>
-        <button mat-raised-button color="primary"
-          class="btnSave"
-          type="submit">Save</button>
-      </div>
-    </mat-card-actions>
-  </form>
-</mat-card> -->
