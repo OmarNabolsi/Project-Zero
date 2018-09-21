@@ -1,0 +1,84 @@
+:host {
+    margin-top: 20px;
+}
+
+section {
+    border-style: solid;
+    border-width: 1pt;
+    border-radius: 10px;
+    border-color: gainsboro;
+}
+
+.p0-subHeader {
+    height: 40px;
+    font-size: 16pt;
+    border-radius: 10px;
+    display: flex;
+    box-sizing: border-box;
+    padding: 35px 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid gainsboro;
+    margin: 0;
+    padding: 0;
+}
+
+.p0-content {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.p0-head-input {
+    width: 100%;
+    font-size: 10pt;
+}
+
+
+table {
+    width: 100%;
+}
+
+.p0-table {
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+tr.mat-header-row {
+    height: 40px;
+}
+
+tr.mat-row {
+    height: 35px;
+}
+
+th.mat-header-cell {
+    font-size: 11pt;
+    font-weight: 500;
+    /* border-bottom-color: #0289d1c9; */
+}
+
+.p0-mat-row:hover .mat-cell,
+.p0-mat-row:active .mat-cell {
+    background-color: #0289d109;
+    cursor: pointer;
+    color: rgba(6, 39, 71, 0.849);
+    border-bottom-color: #0288d1;
+    transition: border 200ms ease-in-out;
+}
+
+.active .mat-cell {
+    background-color: #0289d109;
+    cursor: pointer;
+    color: rgba(6, 39, 71, 0.849);
+    border-bottom-color: #0288d1;
+    transition: border 200ms ease-in-out;
+}

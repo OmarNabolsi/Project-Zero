@@ -1,3 +1,6 @@
+import { AccountEditComponent } from './accounts/account-edit/account-edit.component';
+import { AccountViewComponent } from './accounts/account-view/account-view.component';
+import { AccountListComponent } from './accounts/account-list/account-list.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,7 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule, MatInputModule, MatCardModule, MatDividerModule,
-  MatToolbarModule, MatExpansionModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule
+  MatToolbarModule, MatExpansionModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule,
+  MatTableModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { PostComponent } from './posts/post/post.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { AccountComponent } from './accounts/account/account.component';
 
 @NgModule({
    declarations: [
@@ -26,7 +31,11 @@ import { appRoutes } from './routes';
       PostComponent,
       PostCreateComponent,
       PostListComponent,
-      HomeComponent
+      HomeComponent,
+      AccountComponent,
+      AccountListComponent,
+      AccountViewComponent,
+      AccountEditComponent
    ],
    imports: [
       BrowserModule,
@@ -44,7 +53,10 @@ import { appRoutes } from './routes';
       MatSidenavModule,
       MatListModule,
       MatMenuModule,
-      RouterModule.forRoot(appRoutes),
+      MatTableModule,
+      MatPaginatorModule,
+      MatSortModule,
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       PostService

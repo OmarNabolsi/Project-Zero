@@ -1,0 +1,84 @@
+section {
+    border-style: solid;
+    border-width: 1pt;
+    border-radius: 10px;
+    border-color: gainsboro;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid gainsboro;
+    margin: 0;
+    padding: 0;
+}
+
+.p0-subHeader {
+    height: 40px;
+    font-size: 16pt;
+    border-radius: 10px;
+    display: flex;
+    box-sizing: border-box;
+    padding: 35px 16px;
+    /* width: 100%; */
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.p0-content {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.p0-table {
+    padding: 20px;
+    width: 100%;
+}
+
+.p0-table .p0-td-label {
+    padding: 5px 20px 5px 0;
+}
+
+.p0-table .p0-td-value {
+    padding: 5px 20px 5px 20px;
+}
+
+.p0-btn-row {
+    padding: 3px 10px;
+}
+
+.p0-btn-col {
+    padding: 10px;
+}
+/*
+mat-card {
+    border-radius: 10px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+mat-card-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+mat-divider {
+    margin-top: -10px;
+}
+
+mat-card-content {
+    margin-top: 16px;
+    padding: 15px;
+}
+.mat-card>:first-child {
+    padding: 10px 0 10px 0;
+}
+
+.mat-card>.mat-card-actions:last-child {
+    padding: 7px 0 0 0;
+
+    margin: 0;
+} */
