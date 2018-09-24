@@ -1,9 +1,37 @@
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col h-100">
+            <div class="shadow-sm p-2 pg-bg mb-5 h-100 bg-light rounded">
 
-<div fxFlex fxLayout.gt-sm="row" fxLayout="column" style="margin: 10px;">
-  <div style="min-width: 300px; margin-right: 10px; margin-top: 10px;">
-    <app-account-list style="overflow-y: scroll;"></app-account-list>
-  </div>
-  <div fxFlex  style="min-width: 300px;  margin-right: 10px; margin-top: 10px;">
-    <app-account-view></app-account-view>
-  </div>
+                <div class="row pg-head-ctrl">
+                    <div class="col pg-head-ctrl p-2 w-100">
+                        <div class="shadow-none p-0 mb-3 bg-light ">
+                            <div class="button-row p2 d-flex">
+                                <span class="mr-auto pg-title">Accounts</span>
+                                <button mat-icon-button color="primary">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                                <button mat-icon-button color="accent">
+                                    <mat-icon>create</mat-icon>
+                                </button>
+                                <button mat-icon-button color="warn">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row pg-body">
+                    <div class="col pg-body p-2 w-100">
+                        <div class="shadow-none p-3 mb-0 bg-white">
+                            <p>Page Body</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

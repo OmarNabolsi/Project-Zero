@@ -1,3 +1,37 @@
-:host {
+.container-fluid {
+    margin-top: 15px !important;
+}
+
+.button-row {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+}
+
+.pg-bg {
+    padding-bottom: .1% !important;
+}
+
+.pg-head-ctrl {
+    margin-bottom: 0;
+    padding-bottom: 0 !important;
+}
+
+.pg-head-ctrl hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    border-color: #018a7d;
+}
+
+.pg-title {
+    padding: 5px !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: #018a7d;
+}
+
+
+.pg-body {
+    margin-top: 0;
+    padding: 0 10px 6px 10px !important;
     
 }

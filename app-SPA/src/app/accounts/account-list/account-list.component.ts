@@ -32,35 +32,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./account-list.component.css']
 })
 export class AccountListComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  trStatus: number;
-  displayedColumns: string[] = ['num', 'name'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  length = this.dataSource.data.length;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-
-  // MatPaginator Output
-  pageEvent: PageEvent;
 
   constructor() { }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  alert(event) {
-    console.log(event);
-    this.trStatus = event.num;
-  }
 }
