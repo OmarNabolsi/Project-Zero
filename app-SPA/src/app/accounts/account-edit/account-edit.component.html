@@ -1,3 +1,43 @@
-<p>
-  account-edit works!
-</p>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <h4>New | Edit Account</h4>
+      <hr>
+      <form [formGroup]="accountForm" (ngSubmit)="onSave()" class="needs-validation" >
+        <div class="form-group">
+          <label for="accountNum">Account Number</label>
+          <input
+            type="text" 
+            id="accountNum"
+            formControlName="accountNum"
+            class="form-control form-control-sm"
+            [ngClass]="{'is-invalid': accountForm.get('accountNum').errors && accountForm.get('accountNum').touched}" 
+            placeholder="ex: 10000">
+          <div class="invalid-feedback"
+            *ngIf="accountForm.get('accountNum').hasError('required') && accountForm.get('accountNum').touched">
+              Please enter an account number.
+          </div>
+          <div class="invalid-feedback"
+            *ngIf="accountForm.get('accountNum').hasError('minlength') && accountForm.get('accountNum').touched">
+              Account Number must be 4 to 20 characters.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="accountName">Account Name</label>
+          <input 
+            type="text" 
+            id="accountName" 
+            formControlName="accountName"
+            class="form-control form-control-sm" 
+            placeholder="ex: Assets">
+        </div>
+        <div class="button-row p2 d-flex">
+          <span class="mr-auto"></span>
+          <button type="submit" class="btn btn-outline-success btn-sm mr-2">Save</button>
+          <button type="button" class="btn btn-outline-secondary btn-sm">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

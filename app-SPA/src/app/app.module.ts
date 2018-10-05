@@ -13,7 +13,7 @@ import { MatButtonModule, MatInputModule, MatCardModule, MatDividerModule,
   MatTableModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostService } from './_services/post.service';
@@ -42,6 +42,7 @@ import { AccountComponent } from './accounts/account/account.component';
       BrowserAnimationsModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       MatButtonModule,
       MatInputModule,
       MatCardModule,
