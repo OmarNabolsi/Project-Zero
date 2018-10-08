@@ -8,11 +8,8 @@
                         <div class="shadow-none p-0 mb-3 bg-light ">
                             <div class="button-row p2 d-flex">
                                 <span class="mr-auto pg-title">Accounts</span>
-                                <button mat-icon-button color="primary">
+                                <button mat-icon-button color="primary" (click)="onNew()">
                                     <mat-icon>add</mat-icon>
-                                </button>
-                                <button mat-icon-button color="accent">
-                                    <mat-icon>create</mat-icon>
                                 </button>
                                 <button mat-icon-button color="warn">
                                     <mat-icon>delete</mat-icon>
@@ -26,7 +23,16 @@
                 <div class="row pg-body">
                     <div class="col pg-body p-2 w-100">
                         <div class="shadow-none p-3 mb-0 bg-white">
-                            <app-account-edit></app-account-edit>
+
+                            <app-account-list (selectedAccount)="setAccountToEdit($event)"
+                                (editSelectedAccount)="onEdit($event)"
+                                *ngIf="mode == 'list'"></app-account-list>
+                            <app-account-edit (returnedResult)="returnedResult($event)"
+                                [accEditParams]="getAccEditParams()" 
+                                *ngIf="mode == 'new' || mode == 'edit'"></app-account-edit>
+                            <app-account-view (returnedResult)="returnedResult($event)"
+                                [accViewParams]="getAccEditParams()"
+                                *ngIf="mode == 'view'"></app-account-view>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import {MatTableDataSource, PageEvent, MatPaginator, MatSort} from '@angular/material';
 
 export interface PeriodicElement {
@@ -8,22 +8,10 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {num: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {num: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {num: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {num: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {num: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {num: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {num: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {num: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {num: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {num: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {num: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {num: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {num: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {num: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {num: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const accounts: any[] = [
+  {id: 1, accountNum: '10000', accountName: 'Assets'},
+  {id: 2, accountNum: '20000', accountName: 'Liabilities'},
+  {id: 3, accountNum: '30000', accountName: 'Equities'}
 ];
 
 @Component({
@@ -32,11 +20,42 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./account-list.component.css']
 })
 export class AccountListComponent implements OnInit {
+  @Output() selectedAccount = new EventEmitter();
+  @Output() editSelectedAccount = new EventEmitter();
+  accountList: any[] = [];
+  selectedTableRow = -1;
+  mouseenterId = -1;
 
   constructor() { }
 
   ngOnInit() {
-
+    this.accountList = accounts;
   }
 
+  rowSelected(id) {
+    this.selectedTableRow = id;
+
+    const acc = accounts.find(a => a.id === id);
+    this.selectedAccount.emit(acc);
+  }
+
+  ondblClick(id) {
+    const mode = 'view';
+    this.rowSelected(id);
+    this.editSelectedAccount.emit(mode);
+  }
+
+  onEdit(id) {
+    const mode = 'edit';
+    this.rowSelected(id);
+    this.editSelectedAccount.emit(mode);
+  }
+
+  onMouseEnter(id) {
+    this.mouseenterId = id;
+  }
+
+  onMouseLeave() {
+    this.mouseenterId = -1;
+  }
 }

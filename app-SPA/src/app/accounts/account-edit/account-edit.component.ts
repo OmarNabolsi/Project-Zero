@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -7,9 +7,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./account-edit.component.css']
 })
 export class AccountEditComponent implements OnInit {
-  account: any = {};
+  @Output() returnedResult = new EventEmitter();
+  @Input() accEditParams: any;
   accountForm: FormGroup;
   accountNumInValid = false;
+  mode = 'New';
 
   constructor() { }
 
@@ -18,9 +20,32 @@ export class AccountEditComponent implements OnInit {
       accountNum: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
       accountName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)])
     });
+
+    if (this.accEditParams.acc === null) {
+      this.mode = 'New';
+      this.accountForm.reset();
+    } else {
+      this.mode = 'Edit';
+      this.accountForm.setValue({
+        accountNum: this.accEditParams.acc.accountNum,
+        accountName: this.accEditParams.acc.accountName
+      });
+    }
   }
 
   onSave() {
-    console.log(this.accountForm.value);
+    const result = {
+      mode: this.mode === 'New' ? 'added' : 'edited',
+      data: this.accountForm.value
+    };
+    this.returnedResult.emit(result);
+  }
+
+  onCancel() {
+    const result = {
+      mode: 'canceled',
+      data: ''
+    };
+    this.returnedResult.emit(result);
   }
 }

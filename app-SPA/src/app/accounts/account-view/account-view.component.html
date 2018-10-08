@@ -1,0 +1,33 @@
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+        <h4>View Account</h4>
+        <hr>
+        <form [formGroup]="accountForm" class="needs-validation" >
+            <div class="form-group">
+                <label for="accountNum">Account Number</label>
+                <input
+                    type="text" 
+                    id="accountNum"
+                    formControlName="accountNum"
+                    class="form-control form-control-sm"
+                    readonly>
+            </div>
+            <div class="form-group">
+            <label for="accountName">Account Name</label>
+            <input 
+                type="text" 
+                id="accountName" 
+                formControlName="accountName"
+                class="form-control form-control-sm"
+                readonly>
+            </div>
+            <div class="button-row p2 d-flex">
+                <span class="mr-auto"></span>
+                <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onCancel()">Cancel</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

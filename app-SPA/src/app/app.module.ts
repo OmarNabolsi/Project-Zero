@@ -10,7 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule, MatInputModule, MatCardModule, MatDividerModule,
   MatToolbarModule, MatExpansionModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule,
-  MatTableModule, MatPaginatorModule, MatSortModule
+  MatTableModule, MatPaginatorModule, MatSortModule, MatProgressBarModule
 } from '@angular/material';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +57,7 @@ import { AccountComponent } from './accounts/account/account.component';
       MatTableModule,
       MatPaginatorModule,
       MatSortModule,
+      MatProgressBarModule,
       RouterModule.forRoot(appRoutes)
    ],
    providers: [

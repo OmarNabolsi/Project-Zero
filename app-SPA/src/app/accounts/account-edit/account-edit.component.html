@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-4">
-      <h4>New | Edit Account</h4>
+      <h4>{{ mode }} Account</h4>
       <hr>
       <form [formGroup]="accountForm" (ngSubmit)="onSave()" class="needs-validation" >
         <div class="form-group">
@@ -12,7 +12,7 @@
             id="accountNum"
             formControlName="accountNum"
             class="form-control form-control-sm"
-            [ngClass]="{'is-invalid': accountForm.get('accountNum').errors && accountForm.get('accountNum').touched}" 
+            [ngClass]="{'is-invalid': accountForm.get('accountNum').errors && accountForm.get('accountNum').touched}"
             placeholder="ex: 10000">
           <div class="invalid-feedback"
             *ngIf="accountForm.get('accountNum').hasError('required') && accountForm.get('accountNum').touched">
@@ -29,13 +29,22 @@
             type="text" 
             id="accountName" 
             formControlName="accountName"
-            class="form-control form-control-sm" 
+            class="form-control form-control-sm"
+            [ngClass]="{'is-invalid': accountForm.get('accountName').errors && accountForm.get('accountName').touched}"
             placeholder="ex: Assets">
+          <div class="invalid-feedback"
+            *ngIf="accountForm.get('accountName').hasError('required') && accountForm.get('accountName').touched">
+              Please enter an account name.
+          </div>
+          <div class="invalid-feedback"
+            *ngIf="accountForm.get('accountName').hasError('minlength') && accountForm.get('accountName').touched">
+              Account Name must be 5 to 20 characters.
+          </div>
         </div>
         <div class="button-row p2 d-flex">
           <span class="mr-auto"></span>
-          <button type="submit" class="btn btn-outline-success btn-sm mr-2">Save</button>
-          <button type="button" class="btn btn-outline-secondary btn-sm">Cancel</button>
+          <button type="submit" class="btn btn-outline-success btn-sm mr-2" [disabled]="accountForm.invalid">Save</button>
+          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onCancel()">Cancel</button>
         </div>
       </form>
     </div>

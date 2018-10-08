@@ -1,0 +1,12 @@
+.selected-table-row {
+    background-color: rgba(0,0,0,.075);
+}
+
+.table td, 
+.table th {
+    vertical-align: unset;
+}
+
+.table-row-icon {
+    max-width: 0;
+}
