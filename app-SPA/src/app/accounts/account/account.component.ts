@@ -1,3 +1,4 @@
+import { Account } from './../../models/account';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
   @Input() mode = 'list';
-  accountToEdit: any;
+  accountToEdit: Account;
 
   constructor() {
   }
@@ -23,7 +24,7 @@ export class AccountComponent implements OnInit {
     this.mode = mode;
   }
 
-  setAccountToEdit(acc) {
+  setAccountToEdit(acc: Account) {
     this.accountToEdit = acc;
   }
 
@@ -40,14 +41,7 @@ export class AccountComponent implements OnInit {
   }
 
   returnedResult(result) {
-    if (result.mode === 'added') {
-      this.mode = 'list';
-      console.log(result.mode);
-      console.log(result.data);
-    } else {
-      this.mode = 'list';
-      console.log(result.mode);
-    }
+    this.mode = 'list';
   }
 
 }

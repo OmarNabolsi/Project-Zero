@@ -1,18 +1,6 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import {MatTableDataSource, PageEvent, MatPaginator, MatSort} from '@angular/material';
-
-export interface PeriodicElement {
-  name: string;
-  num: number;
-  weight: number;
-  symbol: string;
-}
-
-const accounts: any[] = [
-  {id: 1, accountNum: '10000', accountName: 'Assets'},
-  {id: 2, accountNum: '20000', accountName: 'Liabilities'},
-  {id: 3, accountNum: '30000', accountName: 'Equities'}
-];
+import { Account } from './../../models/account';
+import { AccountService } from './../../_services/account.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-account-list',
@@ -22,21 +10,25 @@ const accounts: any[] = [
 export class AccountListComponent implements OnInit {
   @Output() selectedAccount = new EventEmitter();
   @Output() editSelectedAccount = new EventEmitter();
-  accountList: any[] = [];
+  accountList: Account[] = [];
   selectedTableRow = -1;
   mouseenterId = -1;
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
-    this.accountList = accounts;
+    this.accountService.getAccounts().subscribe((res: Account[]) =>
+      this.accountList = res
+    , error => console.error(error));
   }
 
   rowSelected(id) {
     this.selectedTableRow = id;
 
-    const acc = accounts.find(a => a.id === id);
-    this.selectedAccount.emit(acc);
+    this.accountService.getAccount(id).subscribe((res: Account) => {
+      const acc = res;
+      this.selectedAccount.emit(acc);
+    }, error => console.log(error));
   }
 
   ondblClick(id) {
@@ -47,8 +39,11 @@ export class AccountListComponent implements OnInit {
 
   onEdit(id) {
     const mode = 'edit';
-    this.rowSelected(id);
-    this.editSelectedAccount.emit(mode);
+    this.accountService.getAccount(id).subscribe((res: Account) => {
+      const acc = res;
+      this.selectedAccount.emit(acc);
+      this.editSelectedAccount.emit(mode);
+    }, error => console.log(error));
   }
 
   onMouseEnter(id) {

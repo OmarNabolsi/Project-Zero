@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using app.API.Models.Ledger;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +31,7 @@ namespace app.API.Data.Ledger
 
         public async Task<IEnumerable<Account>> GetAccounts()
         {
-            var accounts = await _context.Accounts.ToListAsync();
+            var accounts = await _context.Accounts.OrderBy(acc => acc.AccountNum).ToListAsync();
             return accounts;
         }
 

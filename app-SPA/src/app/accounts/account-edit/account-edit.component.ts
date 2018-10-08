@@ -1,5 +1,7 @@
+import { Account } from './../../models/account';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-account-edit',
@@ -13,7 +15,7 @@ export class AccountEditComponent implements OnInit {
   accountNumInValid = false;
   mode = 'New';
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
     this.accountForm = new FormGroup({
@@ -34,11 +36,30 @@ export class AccountEditComponent implements OnInit {
   }
 
   onSave() {
-    const result = {
-      mode: this.mode === 'New' ? 'added' : 'edited',
-      data: this.accountForm.value
+    const account: Account = {
+      id: 0,
+      accountNum: this.accountForm.get('accountNum').value,
+      accountName: this.accountForm.get('accountName').value
     };
-    this.returnedResult.emit(result);
+
+    if (this.mode === 'New') {
+      this.accountService.createAccount(account).subscribe((res: Account) => {
+        const result = {
+          mode: 'added',
+          data: res
+        };
+        this.returnedResult.emit(result);
+      }, error => console.error(error));
+    } else {
+      account.id = this.accEditParams.acc.id;
+      this.accountService.updateAccount(account).subscribe((res: Account) => {
+        const result = {
+          mode: 'edited',
+          data: res
+        };
+        this.returnedResult.emit(result);
+      }, error => console.error(error));
+    }
   }
 
   onCancel() {
